@@ -1,0 +1,109 @@
+/* ========================================
+   ContactForm Component
+   ======================================== */
+
+.contact-form {
+  max-width: 600px;
+  width: 100%;
+}
+
+.contact-form__group {
+  margin-bottom: var(--space-md);
+  position: relative;
+}
+
+.contact-form__label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-gray);
+  margin-bottom: 0.5rem;
+}
+
+.contact-form__input,
+.contact-form__select,
+.contact-form__textarea {
+  width: 100%;
+  padding: 0.9rem 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--color-dark);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-gray-light);
+  outline: none;
+  transition: border-color var(--transition-base);
+  border-radius: 0;
+  -webkit-appearance: none;
+}
+
+.contact-form__input:focus,
+.contact-form__select:focus,
+.contact-form__textarea:focus {
+  border-bottom-color: var(--color-black);
+}
+
+.contact-form__input::placeholder,
+.contact-form__textarea::placeholder {
+  color: var(--color-gray-light);
+  font-weight: 300;
+}
+
+.contact-form__select {
+  cursor: pointer;
+  color: var(--color-gray-light);
+}
+
+.contact-form__select option {
+  color: var(--color-dark);
+}
+
+.contact-form__select:valid {
+  color: var(--color-dark);
+}
+
+.contact-form__textarea {
+  min-height: 120px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.contact-form__line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--color-black);
+  transition: width var(--transition-slow);
+}
+
+.contact-form__group:focus-within .contact-form__line {
+  width: 100%;
+}
+
+.contact-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+.contact-form__submit {
+  margin-top: var(--space-md);
+}
+
+.contact-form__submit .btn {
+  width: 100%;
+  padding: 1.2rem;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .contact-form__row {
+    grid-template-columns: 1fr;
+  }
+}

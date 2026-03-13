@@ -1,0 +1,320 @@
+/* ========================================
+   Hero Component
+   ======================================== */
+
+.hero {
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* Single image (non-slider) */
+.hero__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.1);
+  transition: transform 8s ease;
+}
+
+.hero--loaded .hero__image {
+  transform: scale(1);
+}
+
+/* ========================================
+   Slider Slides — Pure Fade
+   ======================================== */
+.hero__slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 0;
+  transition: opacity 1.5s ease-in-out;
+  will-change: opacity;
+}
+
+.hero__slide--active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.hero__slide--exiting {
+  opacity: 0;
+  z-index: 1;
+}
+
+.hero__slide-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: heroKenBurns 10s ease-in-out forwards;
+}
+
+/* Alternate Ken Burns direction per slide */
+.hero__slide:nth-child(odd) .hero__slide-img {
+  animation-name: heroKenBurns;
+}
+
+.hero__slide:nth-child(even) .hero__slide-img {
+  animation-name: heroKenBurns2;
+}
+
+@keyframes heroKenBurns {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1) translate(-1%, -0.5%);
+  }
+}
+
+@keyframes heroKenBurns2 {
+  0% {
+    transform: scale(1.08) translate(-0.5%, 0.5%);
+  }
+  100% {
+    transform: scale(1) translate(0.5%, -0.5%);
+  }
+}
+
+/* ========================================
+   Overlay
+   ======================================== */
+.hero__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.5) 50%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+  z-index: 2;
+}
+
+/* ========================================
+   Content
+   ======================================== */
+.hero__content {
+  text-align: center;
+  color: var(--color-white);
+  z-index: 3;
+  padding: 0 var(--space-md);
+  max-width: 900px;
+}
+
+.hero__label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: var(--space-sm);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroFadeUp 1s ease 0.3s forwards;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-sm);
+  opacity: 0;
+  transform: translateY(30px);
+  animation: heroFadeUp 1s ease 0.5s forwards;
+}
+
+.hero__title em {
+  font-style: italic;
+  font-weight: 300;
+}
+
+.hero__subtitle {
+  font-family: var(--font-elegant);
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-lg);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroFadeUp 1s ease 0.7s forwards;
+}
+
+.hero__cta {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroFadeUp 1s ease 0.9s forwards;
+}
+
+/* ========================================
+   Scroll Indicator
+   ======================================== */
+.hero__scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  animation: scrollIndicatorFadeUp 1s ease 1.2s forwards;
+  z-index: 5;
+}
+
+.hero__scroll-text {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.hero__scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), transparent);
+  animation: scrollPulse 2s ease infinite;
+}
+
+/* ========================================
+   Keyframes
+   ======================================== */
+@keyframes heroFadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scrollIndicatorFadeUp {
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.5; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.2); }
+}
+
+/* ========================================
+   Page Hero (non-home pages)
+   ======================================== */
+.hero--page {
+  height: 50vh;
+  min-height: 400px;
+}
+
+.hero--page .hero__title {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+/* ========================================
+   Responsive — Tablet
+   ======================================== */
+@media (max-width: 768px) {
+  .hero {
+    min-height: 500px;
+  }
+
+  .hero__content {
+    padding: 0 var(--space-sm);
+  }
+
+  .hero__label {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+  }
+
+  .hero__subtitle {
+    font-size: clamp(0.95rem, 2vw, 1.2rem);
+  }
+
+  .hero__scroll-indicator {
+    display: none;
+  }
+
+  .hero--page {
+    height: 40vh;
+    min-height: 300px;
+  }
+}
+
+/* ========================================
+   Responsive — Mobile
+   ======================================== */
+@media (max-width: 480px) {
+  .hero {
+    min-height: 100svh;
+    min-height: 100vh;
+  }
+
+  .hero__content {
+    padding: 0 1.25rem;
+  }
+
+  .hero__title {
+    font-size: clamp(2.2rem, 10vw, 3.5rem);
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero__label {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero__subtitle {
+    font-size: clamp(0.85rem, 3.5vw, 1.1rem);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero__cta .btn {
+    padding: 0.8rem 1.8rem;
+    font-size: 0.7rem;
+  }
+
+  .hero--page {
+    min-height: auto;
+    height: 40vh;
+    min-height: 300px;
+  }
+
+  .hero--page .hero__title {
+    font-size: clamp(1.8rem, 8vw, 2.5rem);
+  }
+
+  /* Ensure slide images cover properly on mobile */
+  .hero__slide-img {
+    object-position: center center;
+  }
+}

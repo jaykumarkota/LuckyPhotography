@@ -1,0 +1,22 @@
+/* ========================================
+   Gallery Page
+   ======================================== */
+
+.gallery-page {
+  padding-top: 0;
+}
+
+.gallery-page__header {
+  text-align: center;
+  padding: var(--space-md) var(--space-md) 0;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.gallery-page__subtitle {
+  font-family: var(--font-elegant);
+  font-size: 1.1rem;
+  color: var(--color-gray);
+  max-width: 600px;
+  margin: 0 auto;
+}
